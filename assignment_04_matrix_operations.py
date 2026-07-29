@@ -60,3 +60,82 @@
 # YOUR CODE BELOW — remove the # symbols from the scaffold and fill it in
 # =============================================================================
 
+
+def read_matrix(rows, cols):
+    matrix = []
+    for i in range(rows):
+        row = list(map(int, input(f"Enter row {i + 1}: ").split()))
+        matrix.append(row)
+    return matrix
+
+def print_matrix(matrix):
+    for row in matrix:
+        print(" ".join(f"{val:4}" for val in row))
+
+def transpose_matrix(matrix, rows, cols):
+    result = [[0 for _ in range(rows)] for _ in range(cols)]
+    for i in range(rows):
+        for j in range(cols):
+            result[j][i] = matrix[i][j]
+    return result
+
+def add_matrices(a, b, rows, cols):
+    result = [[0 for _ in range(cols)] for _ in range(rows)]
+    for i in range(rows):
+        for j in range(cols):
+            result[i][j] = a[i][j] + b[i][j]
+    return result
+
+def multiply_matrices(a, b, m, n, p):
+    result = [[0 for _ in range(p)] for _ in range(m)]
+    for i in range(m):
+        for j in range(p):
+            for k in range(n):
+                result[i][j] += a[i][k] * b[k][j]
+    return result
+
+def main():
+    print("Matrix Operations")
+    print("1. Transpose")
+    print("2. Add")
+    print("3. Multiply")
+    choice = int(input("Choose an operation (1-3): "))
+
+    if choice == 1:
+        rows = int(input("Enter number of rows: "))
+        cols = int(input("Enter number of columns: "))
+        matrix = read_matrix(rows, cols)
+        print("\nOriginal Matrix:")
+        print_matrix(matrix)
+        result = transpose_matrix(matrix, rows, cols)
+        print("\nTransposed Matrix:")
+        print_matrix(result)
+
+    elif choice == 2:
+        rows = int(input("Enter number of rows: "))
+        cols = int(input("Enter number of columns: "))
+        print("Matrix A:")
+        a = read_matrix(rows, cols)
+        print("Matrix B:")
+        b = read_matrix(rows, cols)
+        result = add_matrices(a, b, rows, cols)
+        print("\nSum Matrix:")
+        print_matrix(result)
+
+    elif choice == 3:
+        m = int(input("Enter rows of A: "))
+        n = int(input("Enter columns of A (= rows of B): "))
+        p = int(input("Enter columns of B: "))
+        print("Matrix A:")
+        a = read_matrix(m, n)
+        print("Matrix B:")
+        b = read_matrix(n, p)
+        result = multiply_matrices(a, b, m, n, p)
+        print("\nProduct Matrix:")
+        print_matrix(result)
+    else:
+        print("Error: Invalid choice.")
+
+if __name__ == "__main__":
+    main()
+    

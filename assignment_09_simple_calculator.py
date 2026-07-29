@@ -68,3 +68,70 @@
 # YOUR CODE BELOW — remove the # symbols from the scaffold and fill it in
 # =============================================================================
 
+def add(a, b):
+    return a + b
+
+def subtract(a, b):
+    return a - b
+
+def multiply(a, b):
+    return a * b
+
+def divide(a, b):
+    return round(a / b, 2)
+
+def modulus(a, b):
+    return a % b
+
+def exponentiate(a, b):
+    return a ** b
+
+def format_num(n):
+    if n == int(n):
+        return str(int(n))
+    return str(n)
+
+def main():
+    while True:
+        print("\n============================")
+        print("     SIMPLE CALCULATOR")
+        print("============================")
+        print("1. Addition")
+        print("2. Subtraction")
+        print("3. Multiplication")
+        print("4. Division")
+        print("5. Modulus")
+        print("6. Exponentiation")
+        print("7. Quit")
+        choice = input("Select an operation (1-7): ")
+
+        if choice == "7":
+            print("Goodbye!")
+            break
+        elif choice in ("1", "2", "3", "4", "5", "6"):
+            a = float(input("Enter first number : "))
+            b = float(input("Enter second number: "))
+
+            if choice == "1":
+                print(f"Result: {format_num(a)} + {format_num(b)} = {format_num(add(a, b))}")
+            elif choice == "2":
+                print(f"Result: {format_num(a)} - {format_num(b)} = {format_num(subtract(a, b))}")
+            elif choice == "3":
+                print(f"Result: {format_num(a)} * {format_num(b)} = {format_num(multiply(a, b))}")
+            elif choice == "4":
+                if b == 0:
+                    print("Error: Cannot divide by zero.")
+                else:
+                    print(f"Result: {format_num(a)} / {format_num(b)} = {format_num(divide(a, b))}")
+            elif choice == "5":
+                if b == 0:
+                    print("Error: Cannot divide by zero.")
+                else:
+                    print(f"Result: {format_num(a)} % {format_num(b)} = {format_num(modulus(a, b))}")
+            elif choice == "6":
+                print(f"Result: {format_num(a)} ** {format_num(b)} = {format_num(exponentiate(a, b))}")
+        else:
+            print("Error: Invalid choice.")
+
+if __name__ == "__main__":
+    main()
